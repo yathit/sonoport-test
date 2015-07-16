@@ -60,7 +60,7 @@
 
     DemoApp.lastTick = performance.now();
     DemoApp.lastRender = DemoApp.lastTick; //Pretend the first draw was on first update.
-    DemoApp.tickLength = 50; //This sets your simulation to run at 20Hz (50ms)
+    DemoApp.tickLength = 200; //This sets your simulation to run at 20Hz (50ms)
 
     demoApp.setInitialState();
     main(performance.now()); // Start the cycle

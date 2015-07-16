@@ -11,8 +11,13 @@
  * @constructor
  */
 var DemoApp = function() {
-    var cow = new SpriteSheet('asset/spritesheet.png');
-    this.objects_ = [cow];
+    this.canvas = document.getElementById('canvas');
+    this.ctx = this.canvas.getContext('2d');
+
+    var cow = new SpriteSheet('asset/spritesheet.png', 279, 456);
+    this.runner = new Animation(cow, 1, 0, 7);
+
+    this.sound = new Sound('asset/audio.wav');
 };
 
 
@@ -20,16 +25,12 @@ var DemoApp = function() {
  * Performs whatever tasks are leftover before the main loop must run.
  */
 DemoApp.prototype.setInitialState = function() {
-
-};
-
-
-/**
- * Draws the scene.
- * @param {number} tFrame
- */
-DemoApp.prototype.render = function(tFrame) {
-    console.log(tFrame);
+    try {
+        this.sound.trim();
+    } catch (e) {
+        window.console.error(e);
+    }
+    this.sound.loop();
 };
 
 
@@ -38,7 +39,18 @@ DemoApp.prototype.render = function(tFrame) {
  * @param {number} tFrame
  */
 DemoApp.prototype.update = function(tFrame) {
-    console.log(tFrame);
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.runner.update();
+};
+
+
+/**
+ * Draws the scene.
+ * @param {number} tFrame
+ */
+DemoApp.prototype.render = function(tFrame) {
+
+    this.runner.render(this.ctx);
 };
 
 
