@@ -41,7 +41,7 @@ Animation.prototype.update = function() {
     this.counter = (this.counter + 1) % this.frameSpeed;
 
     this.x -= this.frameSpeed * 20;
-    if (this.x < -180) {
+    if (this.x < -320) {
         this.x = 400;
     }
 };
